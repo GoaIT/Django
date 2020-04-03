@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+    
+<h1>Welcome to INDEX.html</h1>
+<a href="{% url 'app_base:pag1' %}"> Megi la pagina 1</a>    <!-- app_base este aplicatia definita in views.urls si pag1 este numele definit pentru functia creata-->
+
+{% endblock  %}
+
+    
