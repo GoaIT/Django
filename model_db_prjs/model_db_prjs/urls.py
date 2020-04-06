@@ -18,7 +18,7 @@ from django.urls import path, include
 from base_app import views
 
 urlpatterns = [
-    path('', views.index , name='indexpage'),
+    #path('', views.index , name='indexpage'),
     path('admin/', admin.site.urls),
-    #path('',include('base_app.urls'))
+    path('',include('base_app.urls'))  #tot ce este cu /base_app sa se uite in base_app/urls.py
 ]
