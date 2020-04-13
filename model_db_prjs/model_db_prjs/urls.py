@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from base_app import views
+from django.contrib.auth import views
+
+
 
 urlpatterns = [
     #path('', views.index , name='indexpage'),
     path('admin/', admin.site.urls),
-    path('',include('base_app.urls'))  #tot ce este cu /base_app sa se uite in base_app/urls.py
+    path('',include('base_app.urls')),  #tot ce este cu / sa se uite in /urls.py
+    # path('account/login/',views.LoginView.as_view(),name='login'),
+    path('account/logout/',views.LogoutView.as_view(),name='logout', kwargs={'next_page':'/'}), #next_page este pagina de pornire dupa ce te-ai delogat
 ]

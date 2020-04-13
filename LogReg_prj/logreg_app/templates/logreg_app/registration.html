@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'logreg_app/base.html'%}
+
+{% block body_block %}
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                {% if registered %}
+                    <h3>Multumim pentru inregistrare!</h3>
+                {% else %}
+                <form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
+                    <span class="login100-form-title p-b-43">Inregistrare</span>
+                    {% csrf_token %} 
+                        <div class="wrap-input100 validate-input">
+                              {{ user_form.as_p }}  
+                        </div>
+                        <!-- afiseaza  UserOurForm -->
+                        <div class="wrap-input100 validate-input">
+
+                        {{ user_our_form.as_p }}
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <button class="btn btn-primary login100-form-btn" type="submit">Register</button>
+                        </div> 
+                    <!-- <input type="submit" value="Register">
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required">
+                        <input class="form-control input100" type="text" name="usernam">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Username</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="form-control input100" type="text" name="passwor">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="btn btn-primary login100-form-btn" type="submit">Login</button>
+                    </div>                 -->
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- <div class="jumbotron">
+        {% if registered %}
+            <h3>Multumim pentru inregistrare!</h3>
+        {% else %}
+        <h3>Introdu datele in campurile de mai jos!</h3>
+            <!-- enctype="multipart/form-data" pentru a putea incarca imagini 
+            <form enctype="multipart/form-data" method="POST">
+                {%csrf_token%}
+                <!-- afiseaza  UserForm 
+                {{ user_form.as_p }}  
+                <!-- afiseaza  UserOurForm 
+                {{ user_our_form.as_p}}
+                <input type="submit" value="Register">
+            </form>
+        {% endif %}
+    </div> -->
+{% endblock %}

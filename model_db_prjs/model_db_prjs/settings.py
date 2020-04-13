@@ -14,10 +14,10 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-TEMPLATE_DIR1 = os.path.join(BASE_DIR,'base_app/templates/base_app')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
-STATIC_DIR1 = os.path.join(BASE_DIR,'base_app/static')
+#TEMPLATE_DIR1 = os.path.join(BASE_DIR,'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR,'base_app/templates/base_app')
+TEMPLATE_DIR1 = os.path.join(BASE_DIR,'base_app/templates/registration')
+STATIC_DIR = os.path.join(BASE_DIR,'base_app/static')
 MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
 # Quick-start development settings - unsuitable for production
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'model_db_prjs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,TEMPLATE_DIR1,],
+        'DIRS': [TEMPLATE_DIR,TEMPLATE_DIR1],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,6 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIR = [STATIC_DIR,]
 
 # Media

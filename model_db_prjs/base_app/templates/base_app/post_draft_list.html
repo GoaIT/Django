@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'base_app/base_app.html' %}
+<!-- pagina care ne permite sa modificam articolele -->
+{% block content %}
+<!-- pentru fiecare articol afiseaza data crearii, titlul si 200 de cuvinte din articol -->
+<!-- daca dai click pe titlul articolului te duce pe pagina acestuia -->
+    {% for post in posts %}
+        <div class="post">
+            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|truncatechars:200 }}</p>
+        </div>
+    {% endfor %}                                                
+{% endblock %}

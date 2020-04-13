@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'logreg_app/base.html'%}
+
+    {% block body_block %}
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" action="{% url 'logreg_app:login' %}" method="POST">
+                    {% csrf_token %} 
+                    <span class="login100-form-title p-b-43">AUTENTIFICARE</span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required">
+						<input class="form-control input100" type="text" name="usernam">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Username</span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="form-control input100" type="text" name="passwor">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Password</span>
+					</div>
+                    <div class="container-login100-form-btn">
+						<button class="btn btn-primary login100-form-btn" type="submit">Login</button>
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    
+        <!-- <div class="jumbotron">
+            <h2>Please login!</h2>
+            forma noastra trebuie sa vina itnr-un tag form ca sa functioneze 
+            <form action="{% url 'logreg_app:login' %}" method="POST">
+                {% csrf_token %} 
+                <label for="usernam" >Username:</label>
+                <input type="text" name="usernam" placeholder="Username">
+
+                <label for="passwor">Password:</label>
+                <input type="text" name="passwor" placeholder="Password">
+
+                <input type="submit" value="Login">
+            </form>
+        </div> -->

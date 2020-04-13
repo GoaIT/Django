@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'base_app/base_app.html' %}
+<!-- pagina pe care apar toate articolele -->
+<!-- aceasta este prima pagina a site-ului -->
+{% block content %}
+    <div class="centerstage"></div>
+        {% for post in post_list %}
+            <div class="post">
+                <!-- vom afisa titlul articolelor. daca dam click pe titlu ne va duce pe pagina articolului cu primary key corespunzator -->
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>  
+                <div class="date">
+                    <!-- vom afisa data publicarii interogand din tabela campul published pentru postarea corespunzatoare -->
+                    <p>Published on: {{ post.published_date|date:"D M Y"}}</p>
+                    <div>
+                        <!-- afisam numarul de comentarii aprobate -->
+                        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ Comments.approve_comments.count }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

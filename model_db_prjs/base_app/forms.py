@@ -1,11 +1,16 @@
 from django import forms
-from base_app.models import Post, Comments
+from base_app.models import Post, Comment
+
+#definim cum va arata ceea ce contine baza de date din models.py
 
 class PostForm(forms.ModelForm):
-
+    
+    #clasa predefinita in Django ModelForm
     class Meta():
+        # model/fields/widgets sunt atribute ale clasei Meta()
         model = Post    #conectam tabela pe care vrem sa o folosim in forma aceasta
         fields = ('author','title','text') #acestea sunt campurile pe care vrem sa le modificam din baza de date
+        
         # definim tipul de Widget (TextInput/TextArea) si atribuim proprietati Widget-urilor ca si la bootstrap
         # am atribuit campurilor title si author atribute de aspect din clase predefinite sau definite de noi in fisiere .css
         #toate aceste atribuiri se fac in cadrul "class Meta()"
@@ -20,7 +25,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
 
     class Meta():
-        model = Comments
+        model = Comment
         fields = ('author','text')
         widgets = {
             'author':forms.TextInput(attrs={'class':'clasa_definita1'}),

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base_app/base_app.html' %}
+<!-- pagina care defineste draftul articolului -->
+{% block content %}
+<!-- daca exista data publicarii atunci afiseaz-o, altfel afiseaz butonul Publish -->
+    {% if post.published_date %}
+        <div class="date postdate">
+            {{ post.published_date}}
+        </div>
+    {% else %}
+    <!-- aici facem un buton care ne va permite sa publicam articolul. odata publicat ne va trimite pe pagina articolului -->
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+    {% endif %}
+    <!-- publica titlul cu bold si subliniat. aceste proprietari sunt definite in fisierul css sau in filtre Django -->
+    <p class="postcontent">{{ post.title|safe }}</p>
+    
+    <!-- daca user-ul este autentificat are posibilitatea ori sa stearga articolul ori sa-l modifice. pt asta punem 2 butoane -->
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+            <span class="glyphicon gliphicon-pencil"></span>
+        </a>
+        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    {% endif %}
+    <!-- daca user-ul este autentificat sau comentariul este aprobat afiseaza data publicarii. -->
+    <!-- daca data publicarii nu exista(articolul nu a fost publicat, afiseaza doua butoane Appove/NotApprove ) -->
+    {% for comment in post.comments.all %}
+        <br>
+            {% if user.is_authenticated or comment.approved_comment %}
+                    {{ comment.created_date }}
+                {% if not comment.approved_comment %}
+                    <a class="btn btn-primary" href="{% url 'comment_remove' pk=comment.pk %}"><span class="fa fa-remove"></span></a>
+                    <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}"><span class="fa fa-check"></span></a>
+                {% endif %}
+            <!-- daca comentariul este aprobat afiseaza textul comentariului -->
+            <p>{{ comment.text|safe|linebreaks }}</p>
+            <p>Posted by: <strong>{{ comment.author }}</strong></p>
+            {% endif %}
+            <!-- daca nu sunt comentarii atunci afiseaza textul No comments posted -->
+        {% empty %}
+        <p>No comments posted.</p>
+    {% endfor %}
+{% endblock %}
+
+

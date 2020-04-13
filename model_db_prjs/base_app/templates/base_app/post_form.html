@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'base_app/base_app.html' %}
+<!-- pagina in care se defineste forma pentru scrierea articolului -->
+{% block content %}
+<h1>New post</h1>
+    <!-- definim forma care ne permite sa scrie articole -->
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+<!-- optional. partea cu medium in care ne permite sa folosim unelte de ditare in campul text. asa se apeleaza scriptul incarcat -->
+    <script>var editor = new MediumEditor('.editable');</script>
+{% endblock %}
